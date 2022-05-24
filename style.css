@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,500,600,700,800,900|Barlow:300,400,500,600,700,800,900&display=swap");
+
+* {
+  font-family: "Barlow", sans-serif;
+}
+body {
+  width: 1040px;
+  height: 680px;
+  background: linear-gradient(#3aadbf, #dda8e9);
+  overflow: hidden;
+}
+
+.main-page {
+  position: relative;
+}
+
+.circle1,
+.circle2,
+.circle3 {
+  border-radius: 50%;
+  position: absolute;
+  background-color: #156397;
+  filter: drop-shadow(5px 5px 6px rgba(0, 0, 0, 0.25));
+}
+
+.circle1 {
+  top: 20px;
+  left: 200px;
+  height: 640px;
+  width: 640px;
+  opacity: 25%;
+  animation: circles 0.4s cubic-bezier(1, 0.06, 0.25, 1) backwards;
+}
+
+.circle2 {
+  top: 60px;
+  left: 240px;
+  height: 560px;
+  width: 560px;
+  opacity: 50%;
+  animation: circles 0.8s cubic-bezier(1, 0.06, 0.25, 1) backwards;
+}
+
+.circle3 {
+  top: 100px;
+  left: 280px;
+  height: 480px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: circles 1.2s cubic-bezier(1, 0.06, 0.25, 1) backwards;
+}
+
+.qm {
+  display: inline;
+  height: 16px;
+  width: 16px;
+  margin-bottom: 5px;
+  filter: invert(98%) sepia(0%) saturate(8%) hue-rotate(209deg) brightness(102%)
+    contrast(104%);
+  opacity: 50%;
+}
+
+.text {
+  color: white;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  text-align: center;
+  margin: 8px;
+  animation: text 0.6s 1.8s ease backwards;
+}
+
+.button-main {
+  width: 120px;
+  height: 30px;
+  color: #ffffff;
+  background-color: #774dc1;
+  border-radius: 100px;
+  border: none;
+  align-self: center;
+  font-size: 18px;
+}
+
+.complete {
+  margin-top: 20px;
+  box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.25);
+  animation: ButtonComeLeft 0.6s 3s ease backwards;
+}
+
+.page-button {
+  top: 10px;
+  position: absolute;
+  width: 130px;
+  height: 40px;
+  height: 40;
+  color: #707070;
+  background-color: white;
+  box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 100px;
+  border: none;
+  font-size: 18px;
+}
+
+.settings-button {
+  right: 20px;
+  animation: ButtonComeRight 0.6s 3s ease backwards;
+}
+
+.focus-button {
+  left: 20px;
+  animation: ButtonComeLeft 0.6s 3s ease backwards;
+}
+
+.ignore {
+  margin-top: 20px;
+  opacity: 65%;
+  box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.25);
+  animation: ButtonComeRight 0.6s 3s ease backwards;
+}
+
+.text-main {
+  /* top: 220px;
+  left: 280px;
+  height: 240px;
+  width: 480px; */
+  font-size: 40px;
+}
+
+.text-sub {
+  /* top: 360px;
+  left: 340px;
+  width: 360px; */
+  font-size: 18px;
+  opacity: 50%;
+}
+
+@keyframes text {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+
+@keyframes ButtonComeLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+}
+
+@keyframes ButtonComeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+}
+
+@keyframes circles {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0%;
+  }
+}
