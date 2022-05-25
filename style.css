@@ -53,7 +53,7 @@ body {
 }
 
 .qm {
-  display: inline;
+  display: inline-block;
   height: 16px;
   width: 16px;
   margin-bottom: 5px;
@@ -70,7 +70,8 @@ body {
   animation: text 0.6s 1.8s ease backwards;
 }
 
-.button-main {
+.button-main,
+.begin {
   width: 120px;
   height: 30px;
   color: #ffffff;
@@ -79,6 +80,24 @@ body {
   border: none;
   align-self: center;
   font-size: 18px;
+}
+
+.begin {
+  margin-top: 20px;
+  box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.25);
+  width: 180px;
+  height: 60px;
+  font-size: 24px;
+  animation: text 0.6s 1.8s ease backwards;
+}
+
+.start-text {
+  color: white;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  text-align: center;
+  margin: 8px;
+  animation: text 0.6s 1.8s ease backwards;
+  font-size: 94px;
 }
 
 .complete {
@@ -132,6 +151,26 @@ body {
   width: 360px; */
   font-size: 18px;
   opacity: 50%;
+}
+
+.hidden {
+  animation: hide 0.6s 0.3s ease backwards;
+  opacity: 0%;
+}
+
+.removed {
+  display: none;
+}
+
+@keyframes hide {
+  0% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+    transform: translateY(40px);
+  }
 }
 
 @keyframes text {
