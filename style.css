@@ -4,10 +4,23 @@
   font-family: "Barlow", sans-serif;
 }
 body {
-  width: 1040px;
-  height: 680px;
-  background: linear-gradient(#3aadbf, #dda8e9);
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	animation: bg-animation 15s ease infinite;
+    background-size: 300%;
+}
+
+@keyframes bg-animation {
+  0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 sup {
@@ -96,7 +109,15 @@ sup {
   width: 180px;
   height: 60px;
   font-size: 24px;
+  transition: all 0.3s ease;
+
   animation: text 0.6s 1.8s ease backwards;
+}
+.begin:hover{
+  box-shadow: 0px 10px 10px -10px rgba(#36184F, 0.5);
+                        transform: translateY(5px);
+                        background: white;
+                        color: grey;
 }
 
 .start-text {
@@ -125,9 +146,16 @@ sup {
   box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.25);
   border-radius: 100px;
   border: none;
+  transition: all 0.3s ease;
+
   font-size: 18px;
 }
-
+.page-button:hover{
+  box-shadow: 0px 10px 10px -10px rgba(#36184F, 0.5);
+                        transform: translateY(5px);
+                        background: #774dc1;
+                        color: white;
+}
 .settings-button {
   right: 20px;
   animation: ButtonComeRight 0.6s 3s ease backwards;
