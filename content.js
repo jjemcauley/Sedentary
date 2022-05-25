@@ -62,10 +62,12 @@ complete_button.addEventListener("click", function () {
   //Creates an Alarm that will fire at newTime
   chrome.alarms.create("nextTask", {
     delayInMinutes:
-      currTaskList[`phase${phase}`][`task${randomIndex}`]?.newTime,
+      currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask,
   });
 
-  console.log(currTaskList[`phase${phase}`][`task${randomIndex}`]?.newTime);
+  console.log(
+    currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask
+  );
 
   //pushInbetweenScreen();
   /*
