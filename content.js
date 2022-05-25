@@ -18,7 +18,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
       element.style.fontSize = "xx-large";
     }
     sub_text.textContent =
-      currTaskList[`phase${phase}`][`tasks${randomIndex}`].sub;
+      currTaskList[`phase${phase}`][`task${randomIndex}`].sub;
   }
 });
 
