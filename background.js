@@ -64,5 +64,3 @@ chrome.windows.onFocusChanged.addListener((rmved) => {
   }
 });
 */
-
-chrome.alarms.create("nextTask", { delayInMinutes: 1, periodInMinutes: 1 });

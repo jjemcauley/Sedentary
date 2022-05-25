@@ -8,6 +8,19 @@
 *
 * 2) Drop shadow on text
 */
+///Saved code
+
+/*
+    updateCompletedTasks();
+    randomIndex = getTaskIndex();
+    for (element of main_text) {
+      element.textContent =
+        currTaskList[`phase${phase}`][`task${randomIndex}`].main;
+      element.style.fontSize = "xx-large";
+    }
+    sub_text.textContent =
+      currTaskList[`phase${phase}`][`task${randomIndex}`].sub;
+    */
 
 //Dom Elements
 
@@ -27,7 +40,15 @@ const complete_button = document.querySelector(".complete");
 const ignore_button = document.querySelector(".ignore");
 const main_buttons = document.querySelectorAll(".button-main");
 
+let phase = 1;
+let completedTasks = 0;
+let randomIndex = 0;
+
+let currTaskList = bodilyLongevityData;
+
+//Button Event Listeners
 begin_button.addEventListener("click", function () {
+  chrome.alarms.create("nextTask", { delayInMinutes: 1, periodInMinutes: 1 });
   for (element of start_elements) element.classList.add("hidden");
   setTimeout(() => {
     for (element of start_elements) element.classList.add("removed");
@@ -35,23 +56,38 @@ begin_button.addEventListener("click", function () {
   }, 800);
 });
 
-let phase = 1;
-let completedTasks = 0;
-let randomIndex = 0;
-
-let currTaskList = bodilyLongevityData;
+complete_button.addEventListener("click", function () {
+  /*
+  Put a piece in the background
+  play a nice sound
+  Transition back to relax screen 
+  */
+});
 
 chrome.alarms.onAlarm.addListener((alarm) => {
+  //TODO: add a nice sound and an icon notification.
   if (alarm.name === "nextTask") {
-    updateCompletedTasks();
     randomIndex = getTaskIndex();
-    for (element of main_text) {
-      element.textContent =
-        currTaskList[`phase${phase}`][`task${randomIndex}`].main;
-      element.style.fontSize = "xx-large";
-    }
-    sub_text.textContent =
-      currTaskList[`phase${phase}`][`task${randomIndex}`].sub;
+
+    //Hide the text temporarily
+    for (element of main_text) element.classList.add("hidden-right");
+    sub_text.classList.add("hidden-right-sub");
+
+    setTimeout(function () {
+      //Changes both the main_text and it's outline
+      for (element of main_text) {
+        element.textContent =
+          currTaskList[`phase${phase}`][`task${randomIndex}`].main;
+      }
+      sub_text.textContent =
+        currTaskList[`phase${phase}`][`task${randomIndex}`].sub;
+
+      //Unhides text
+      for (elements of main_text) element.classList.remove("hidden-right");
+      sub_text.classList.remove("hidden-right-sub");
+
+      for (elements of main_buttons) elements.classList.remove("removed");
+    }, 500);
   }
 });
 
