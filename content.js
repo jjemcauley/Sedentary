@@ -65,7 +65,10 @@ complete_button.addEventListener("click", function () {
 });
 
 chrome.alarms.onAlarm.addListener((alarm) => {
-  //TODO: add a nice sound and an icon notification.
+  /*TODO: add a nice sound and an icon notification.
+  Clear the alarm
+  */
+
   if (alarm.name === "nextTask") {
     randomIndex = getTaskIndex();
 
