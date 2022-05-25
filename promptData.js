@@ -133,3 +133,18 @@ const sleepinessData = {
     },
   },
 };
+
+const inbetweenData = {
+  prompt1: {
+    main: "Relax! No tasks at the moment.",
+    sub: "Tip: You can set your preferences when it comes to notifications in the 'Settings' menu.",
+  },
+  prompt2: {
+    main: "No tasks right now. Back to work!",
+    sub: "Tom Duan is one of our creators. He's really cute!",
+  },
+  prompt3: {
+    main: "No tasks right now. Back to work!",
+    sub: "Jake McAuley is one of our creators. He's really cute!",
+  },
+};
