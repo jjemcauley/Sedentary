@@ -59,6 +59,8 @@ const getTaskIndex = function () {
 
 //Button Event Listeners
 begin_button.addEventListener("mouseup", function () {
+  console.log("Begin Button Sounded");
+  playBegin();
   console.log("Fired Begin Button");
   chrome.alarms.create("nextTask", { delayInMinutes: 1 });
   for (element of start_elements) element.classList.add("hidden");
@@ -69,6 +71,8 @@ begin_button.addEventListener("mouseup", function () {
 });
 
 complete_button.addEventListener("click", function () {
+  console.log("Complete Button Sounded");
+  playComplete();
   pushInbetweenScreen(generateInbetweenIndex());
 
   //Creates an Alarm that will fire at newTime
@@ -80,17 +84,11 @@ complete_button.addEventListener("click", function () {
   console.log(
     currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask
   );
-
-  //pushInbetweenScreen();
-  /*
-  Put a piece in the background
-  play a nice sound
-  Transition back to relax screen 
-  */
 });
 
 //Text That will appear in the intermediate stages. (Between Tasks)
 const pushInbetweenScreen = function (index) {
+  console.log("Inbetween Scenes Sounded");
   hideMainButtons();
   hideMainText();
   setTimeout(() => {
@@ -108,6 +106,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   /*TODO: add a nice sound and an icon notification.
   Clear the alarm
   */
+  console.log("ALARM SOUNDED");
   if (alarm.name === "nextTask") {
     chrome.alarms.clear("nextTask");
     randomIndex = getTaskIndex();
@@ -143,4 +142,16 @@ const updatePhase = function () {
   }
 
   completedTasks = 0;
+};
+
+const playBegin = function () {
+  const audio = new Audio("complete1.wav");
+  audio.volume = 0.2;
+  audio.play();
+};
+
+const playComplete = function () {
+  const audio = new Audio("complete2.wav");
+  audio.volume = 0.2;
+  audio.play();
 };

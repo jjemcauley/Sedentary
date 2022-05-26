@@ -1,22 +1,5 @@
 "use strict";
 
-/* WORKING EXAMPLE, PERSISTS EVEN AFTER CLOSING AND REMOVING LINE 20
-chrome.storage.local.set({ test: "Hello123" });
-
-chrome.storage.local.get(["test"], (res) => {
-  console.log(res.test);
-});
-*/
-
-/* This should be updating the local set
-chrome.storage.local.set({ hello: 1 });
-chrome.storage.local.set({ hello: 2 });
-
-chrome.storage.local.get("hello", (result) => {
-  console.log(result.hello);
-});
-*/
-
 let windowId = null;
 const storageKey = "windowKey";
 chrome.storage.local.get([storageKey], (result) => {
@@ -55,12 +38,3 @@ chrome.windows.onRemoved.addListener((rmved) => {
     }
   });
 });
-
-/*
-chrome.windows.onFocusChanged.addListener((rmved) => {
-  if (rmved !== windowId) {
-    chrome.windows.update(windowId, { state: "minimized" });
-    console.log("Ran");
-  }
-});
-*/

@@ -4,6 +4,8 @@
   font-family: "Barlow", sans-serif;
 }
 body {
+  /* width: 100%;
+  height: 100%; */
   width: 1040px;
   height: 680px;
   /*Nice Palletes:
@@ -13,25 +15,21 @@ body {
   #3aadbf, #dda8e9
   */
   background: linear-gradient(45deg, #3aadbf, #dda8e9);
-  /* animation: bg-animation 7s ease infinite; */
-  /* background-size: 200%, 200%; */
+  /* animation: gradient 12s ease infinite;
+  background-size: 200%, 200%; */
   overflow: hidden;
 }
 
-@keyframes bg-animation {
+@keyframes gradient {
   0% {
-    background-position: 50% 0%;
+    background-position: 0% 50%;
   }
   50% {
-    background-position: 50% 100%;
+    background-position: 100% 50%;
   }
   100% {
-    background-position: 50% 0%;
+    background-position: 0% 50%;
   }
-}
-
-sup {
-  font-weight: 700;
 }
 
 .main-page {
