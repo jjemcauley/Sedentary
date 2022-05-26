@@ -290,3 +290,49 @@ body {
     opacity: 0%;
   }
 }
+
+.circle-pulse-1 {
+  animation: circlePulse1 1.1s 1s ease backwards;
+}
+.circle-pulse-2 {
+  animation: circlePulse2 2.1s 0.5s ease backwards;
+}
+.circle-pulse-3 {
+  animation: circlePulse3 2.83s 0s ease backwards;
+}
+
+@keyframes circlePulse1 {
+  20% {
+    transform: translateX(50px);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes circlePulse2 {
+  20% {
+    transform: translateX(-50px);
+  }
+  50% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes circlePulse3 {
+  20% {
+    transform: translateX(50px);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

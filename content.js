@@ -16,6 +16,11 @@ const complete_button = document.querySelector(".complete");
 const ignore_button = document.querySelector(".ignore");
 const main_buttons = document.querySelectorAll(".button-main");
 
+//Circles
+const smallest_circle = document.querySelector(".circle3");
+const middle_circle = document.querySelector(".circle2");
+const largest_circle = document.querySelector(".circle1");
+
 let phase = 1;
 let completedTasks = 0;
 let randomIndex = 0;
@@ -60,6 +65,12 @@ const getTaskIndex = function () {
 //Button Event Listeners
 begin_button.addEventListener("mouseup", function () {
   console.log("Begin Button Sounded");
+
+  //For the chime animation
+  smallest_circle.classList.add("circle-pulse-1");
+  middle_circle.classList.add("circle-pulse-2");
+  largest_circle.classList.add("circle-pulse-3");
+
   playBegin();
   console.log("Fired Begin Button");
   chrome.alarms.create("nextTask", { delayInMinutes: 1 });
