@@ -4,23 +4,29 @@
   font-family: "Barlow", sans-serif;
 }
 body {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(30deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  animation: bg-animation 20s ease infinite;
-  background-size: 300%;
+  width: 1040px;
+  height: 680px;
+  /*Nice Palletes:
+  #d57f2a, #756fbd, #2ec4d1
+  #f45fd9, #5e73a1, #4fcedd
+  #9de0fc, #9db1fc, #9dfce9
+  #3aadbf, #dda8e9
+  */
+  background: linear-gradient(45deg, #3aadbf, #dda8e9);
+  /* animation: bg-animation 7s ease infinite; */
+  /* background-size: 200%, 200%; */
   overflow: hidden;
 }
 
 @keyframes bg-animation {
   0% {
-    background-position: 0% 50%;
+    background-position: 50% 0%;
   }
   50% {
-    background-position: 100% 50%;
+    background-position: 50% 100%;
   }
   100% {
-    background-position: 0% 50%;
+    background-position: 50% 0%;
   }
 }
 
@@ -81,7 +87,7 @@ sup {
 }
 
 .text-shadow {
-  text-shadow: 0px 5px 2px rgba(0, 0, 0, 0.25);
+  text-shadow: 0px 8px 8px rgba(0, 0, 0, 0.501);
 }
 
 .text {
@@ -213,9 +219,25 @@ sup {
   display: none;
 }
 
+.hidden-ignore {
+  animation: hideIgnore 0.6s 0.3s ease backwards;
+  opacity: 0%;
+}
+
 @keyframes hide {
   0% {
     opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+    transform: translateY(40px);
+  }
+}
+
+@keyframes hideIgnore {
+  0% {
+    opacity: 50%;
   }
 
   100% {

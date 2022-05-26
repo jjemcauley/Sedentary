@@ -3,19 +3,19 @@ const bodilyLongevityData = {
     task1: {
       main: "Go for walk. 1 😋",
       sub: "Proper hydration is paramount. Above all else. 1 ",
-      delayNextTask: 30,
+      delayNextTask: 1,
       numCompleted: 0,
     },
     task2: {
       main: "Stretch hand. 2 🥉",
       sub: "Proper hydration is paramount. Above all else. 2 ",
-      delayNextTask: 10,
+      delayNextTask: 1,
       numCompleted: 0,
     },
     task3: {
       main: "Make sure you have a container of water right next to you. 3 ༼ つ ◕_◕ ༽つ",
       sub: "Proper hydration is paramount. Above all else. 3 ",
-      delayNextTask: 15,
+      delayNextTask: 1,
       numCompleted: 0,
     },
   },

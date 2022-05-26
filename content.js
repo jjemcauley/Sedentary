@@ -1,27 +1,3 @@
-/*
-* Objective list: 25th of may
-* 1) MVP useability. 
-          -Ready state
-          -Intermediate state
-          -Tasks appearing
-          -Button functionality
-*
-* 2) Drop shadow on text
-*/
-///Saved code
-
-/*
-    updateCompletedTasks();
-    randomIndex = getTaskIndex();
-    for (element of main_text) {
-      element.textContent =
-        currTaskList[`phase${phase}`][`task${randomIndex}`].main;
-      element.style.fontSize = "xx-large";
-    }
-    sub_text.textContent =
-      currTaskList[`phase${phase}`][`task${randomIndex}`].sub;
-    */
-
 //Dom Elements
 
 //Text Elements (Circle)
@@ -43,11 +19,47 @@ const main_buttons = document.querySelectorAll(".button-main");
 let phase = 1;
 let completedTasks = 0;
 let randomIndex = 0;
+let timeElapsed = 0;
 
 let currTaskList = bodilyLongevityData;
 
+//Animation Helpers
+const hideMainText = function () {
+  main_text.classList.add("hidden-right");
+  sub_text.classList.add("hidden-right-sub");
+};
+
+const unhideMainText = function () {
+  main_text.classList.remove("hidden-right");
+  sub_text.classList.remove("hidden-right-sub");
+};
+
+const hideMainButtons = function () {
+  complete_button.classList.add("hidden");
+  ignore_button.classList.add("hidden-ignore");
+};
+
+const unhideMainButtons = function () {
+  complete_button.classList.remove("hidden");
+  ignore_button.classList.remove("hidden-ignore");
+};
+
+//Random Generators
+const generateInbetweenIndex = function () {
+  return Math.floor(Math.random() * Object.keys(inbetweenData).length) + 1;
+};
+
+const getTaskIndex = function () {
+  return (
+    Math.floor(
+      Math.random() * Object.keys(currTaskList[`phase${phase}`]).length
+    ) + 1
+  );
+};
+
 //Button Event Listeners
-begin_button.addEventListener("click", function () {
+begin_button.addEventListener("mouseup", function () {
+  console.log("Fired Begin Button");
   chrome.alarms.create("nextTask", { delayInMinutes: 1 });
   for (element of start_elements) element.classList.add("hidden");
   setTimeout(() => {
@@ -77,24 +89,15 @@ complete_button.addEventListener("click", function () {
   */
 });
 
-const generateInbetweenIndex = function () {
-  return Math.floor(Math.random() * Object.keys(inbetweenData).length) + 1;
-};
-
 //Text That will appear in the intermediate stages. (Between Tasks)
 const pushInbetweenScreen = function (index) {
-  console.log(index);
-  //Hide the buttosn and text momentarily
-  for (elements of main_buttons) elements.classList.add("hidden");
-  for (elements of main_text_list) elements.classList.add("hidden");
-
-  //Remove the buttons from the flexbox, remove hidden class
+  hideMainButtons();
+  hideMainText();
   setTimeout(() => {
     for (elements of main_buttons) elements.classList.add("removed");
-    for (elements of main_buttons) elements.classList.remove("hidden");
-    for (elements of main_text_list) elements.classList.remove("hidden");
+    unhideMainButtons();
+    unhideMainText();
   }, 500);
-
   setTimeout(() => {
     main_text.textContent = inbetweenData[`prompt${index}`].main;
     sub_text.textContent = inbetweenData[`prompt${index}`].sub;
@@ -105,39 +108,23 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   /*TODO: add a nice sound and an icon notification.
   Clear the alarm
   */
-
   if (alarm.name === "nextTask") {
     chrome.alarms.clear("nextTask");
     randomIndex = getTaskIndex();
-
-    //Hide the text temporarily
-    main_text.classList.add("hidden-right");
-    sub_text.classList.add("hidden-right-sub");
-
+    hideMainText();
     setTimeout(function () {
       //Changes both the main_text and it's outline
       main_text.textContent =
         currTaskList[`phase${phase}`][`task${randomIndex}`].main;
       sub_text.textContent =
         currTaskList[`phase${phase}`][`task${randomIndex}`].sub;
-
-      //Unhides text
-      main_text.classList.remove("hidden-right");
-      sub_text.classList.remove("hidden-right-sub");
-
+      unhideMainText();
       for (elements of main_buttons) elements.classList.remove("removed");
     }, 500);
   }
 });
 
 //Picks an index out of the current tasks lists current phase. Will choose dynamic max/min bounds.
-const getTaskIndex = function () {
-  return (
-    Math.floor(
-      Math.random() * Object.keys(currTaskList[`phase${phase}`]).length
-    ) + 1
-  );
-};
 
 const updateCompletedTasks = function () {
   completedTasks++;
