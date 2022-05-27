@@ -336,3 +336,37 @@ body {
     transform: translateX(0px);
   }
 }
+.container {
+  position: absolute;
+  height: 400px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  top: 180px;
+  left: 280px;
+}
+
+.part {
+  top: 40px;
+  left: 20px;
+  width: 30px;
+  height: 15px;
+  z-index: 1;
+  margin-top: 5px;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #e34fc0a0, #30dcfba7);
+  animation: pieceLeft 10s infinite ease backwards;
+}
+
+@keyframes pieceLeft {
+  50% {
+    transform: translateX(400px);
+    width: 10%;
+  }
+}
+@keyframes pieceRight {
+  50% {
+    right: 60%;
+    width: 10%;
+  }
+}
