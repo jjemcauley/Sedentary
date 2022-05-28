@@ -1,5 +1,19 @@
 //Dom Elements
+/*
+TODO:
+Change the randmized tasks to prefer non-repeating
 
+Settings
+  - Mute notifications
+  - Mute complete sounds
+  - Frequency?
+
+Focus modes
+ - Color changes, etc.
+
+Complete tracker 
+ - Somthing semi persistent. (at least)
+*/
 //Text Elements (Circle)
 const main_text = document.querySelector(".text-main");
 const sub_text = document.querySelector(".text-sub");
@@ -55,11 +69,15 @@ const generateInbetweenIndex = function () {
 };
 
 const getTaskIndex = function () {
-  return (
+  let index =
     Math.floor(
       Math.random() * Object.keys(currTaskList[`phase${phase}`]).length
-    ) + 1
-  );
+    ) + 1;
+  if (currTaskList[`phase${phase}`][`task${index}`].numCompleted === 0) {
+    return index;
+  } else {
+    return getTaskIndex();
+  }
 };
 
 //Button Event Listeners
@@ -86,8 +104,12 @@ complete_button.addEventListener("click", function () {
   chrome.action.setBadgeText({ text: "" });
   pushInbetweenScreen(generateInbetweenIndex());
 
+  //Adds the amount of time this task had allotted for inbetween to total time elapsed.
   timeElapsed +=
     currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask;
+
+  //Updates amount of completions for this task
+  currTaskList[`phase${phase}`][`task${randomIndex}`].numCompleted += 1;
   //Creates an Alarm that will fire at newTime
   chrome.alarms.create("nextTask", {
     delayInMinutes:
