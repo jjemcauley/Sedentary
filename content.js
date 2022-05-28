@@ -141,7 +141,9 @@ const updateCompletedTasks = function () {
   updatePhase();
 };
 
+//TODO: Need to change this to add up time elapsed instead of amount of phases
 const updatePhase = function () {
+  /*
   if (completedTasks > 5 && phase === 1) {
     phase++;
   } else if (completedTasks > 5 && phase === 2) {
@@ -151,6 +153,7 @@ const updatePhase = function () {
   } else {
     return;
   }
+  */
 
   completedTasks = 0;
 };
