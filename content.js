@@ -80,19 +80,32 @@ begin_button.addEventListener("mouseup", function () {
 });
 
 complete_button.addEventListener("click", function () {
+  updatePhase();
+  console.log("time elapsed: " + timeElapsed);
   playComplete();
   chrome.action.setBadgeText({ text: "" });
   pushInbetweenScreen(generateInbetweenIndex());
 
+  timeElapsed +=
+    currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask;
   //Creates an Alarm that will fire at newTime
   chrome.alarms.create("nextTask", {
     delayInMinutes:
       currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask,
   });
+});
 
-  console.log(
-    currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask
-  );
+ignore_button.addEventListener("click", function () {
+  chrome.action.setBadgeText({ text: "" });
+  pushInbetweenScreen(generateInbetweenIndex());
+
+  timeElapsed +=
+    currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask;
+
+  chrome.alarms.create("nextTask", {
+    delayInMinutes:
+      currTaskList[`phase${phase}`][`task${randomIndex}`]?.delayNextTask,
+  });
 });
 
 //Text That will appear in the intermediate stages. (Between Tasks)
@@ -112,9 +125,6 @@ const pushInbetweenScreen = function (index) {
 };
 
 chrome.alarms.onAlarm.addListener((alarm) => {
-  /*TODO: add a nice sound and an icon notification.
-  Clear the alarm
-  */
   console.log("ALARM SOUNDED");
   if (alarm.name === "nextTask") {
     playNotify();
@@ -134,28 +144,15 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   }
 });
 
-//Picks an index out of the current tasks lists current phase. Will choose dynamic max/min bounds.
-
-const updateCompletedTasks = function () {
-  completedTasks++;
-  updatePhase();
-};
-
 //TODO: Need to change this to add up time elapsed instead of amount of phases
 const updatePhase = function () {
-  /*
-  if (completedTasks > 5 && phase === 1) {
+  if (timeElapsed > 60 && phase === 1) {
     phase++;
-  } else if (completedTasks > 5 && phase === 2) {
+  } else if (timeElapsed > 180 && phase === 2) {
     phase++;
-  } else if (completedTasks > 5 && phase === 3) {
+  } else if (timeElapsed > 240 && phase === 3) {
     phase++;
-  } else {
-    return;
   }
-  */
-
-  completedTasks = 0;
 };
 
 const playBegin = function () {
