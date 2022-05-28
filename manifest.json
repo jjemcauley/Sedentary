@@ -9,6 +9,7 @@
   },
   "permissions": ["storage", "alarms", "tabs"],
   "action": {
-    "default_title": "Open Sedentia"
+    "default_title": "Open Sedentia",
+    "default_icon": "icon.png"
   }
 }

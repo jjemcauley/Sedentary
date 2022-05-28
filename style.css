@@ -115,7 +115,6 @@ body {
   height: 60px;
   font-size: 24px;
   transition: all 0.3s ease;
-
   animation: text 0.6s 1.8s ease backwards;
 }
 .begin:hover,

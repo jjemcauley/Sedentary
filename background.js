@@ -33,6 +33,8 @@ chrome.action.onClicked.addListener(function () {
 chrome.windows.onRemoved.addListener((rmved) => {
   chrome.storage.local.get([storageKey], (result) => {
     if (rmved === result[storageKey]) {
+      chrome.action.setBadgeText({ text: "" });
+      chrome.alarms.clearAll(); //Potential fix for Weird bug.
       windowId = null;
       chrome.storage.local.set({ [storageKey]: null });
     }

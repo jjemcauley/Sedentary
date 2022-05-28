@@ -64,8 +64,6 @@ const getTaskIndex = function () {
 
 //Button Event Listeners
 begin_button.addEventListener("mouseup", function () {
-  console.log("Begin Button Sounded");
-
   //For the chime animation
   smallest_circle.classList.add("circle-pulse-1");
   middle_circle.classList.add("circle-pulse-2");
@@ -82,8 +80,8 @@ begin_button.addEventListener("mouseup", function () {
 });
 
 complete_button.addEventListener("click", function () {
-  console.log("Complete Button Sounded");
   playComplete();
+  chrome.action.setBadgeText({ text: "" });
   pushInbetweenScreen(generateInbetweenIndex());
 
   //Creates an Alarm that will fire at newTime
@@ -119,6 +117,8 @@ chrome.alarms.onAlarm.addListener((alarm) => {
   */
   console.log("ALARM SOUNDED");
   if (alarm.name === "nextTask") {
+    playNotify();
+    chrome.action.setBadgeText({ text: "!" });
     chrome.alarms.clear("nextTask");
     randomIndex = getTaskIndex();
     hideMainText();
@@ -156,13 +156,19 @@ const updatePhase = function () {
 };
 
 const playBegin = function () {
-  const audio = new Audio("complete1.wav");
+  const audio = new Audio("begin.wav");
   audio.volume = 0.2;
   audio.play();
 };
 
 const playComplete = function () {
-  const audio = new Audio("complete2.wav");
+  const audio = new Audio("complete.wav");
   audio.volume = 0.2;
+  audio.play();
+};
+
+const playNotify = function () {
+  const audio = new Audio("notify1.wav");
+  audio.volume = 0.1;
   audio.play();
 };
